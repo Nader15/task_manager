@@ -16,6 +16,7 @@ dependencies:
   get: ^4.6.1
   http: ^0.13.4
   intl: ^0.18.1
+  lottie: ^1.4.3
 
 dev_dependencies:
   flutter_test:
