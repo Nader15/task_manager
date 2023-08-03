@@ -104,7 +104,7 @@ class CrudController extends GetxController {
         title: AppStrings.STATUS,
         message: AppStrings.TASK_DELETED,
         backgroundColor: AppColors.MAIN_COLOR,
-        icon: Icons.verified_user_rounded
+        icon: Icons.delete_forever
     );
   }
 

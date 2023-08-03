@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../Database/models/task_model.dart';
 import '../../../Logic/controllers/crud_controller.dart';
@@ -166,7 +167,13 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: crudController.dateEditController.value,
+                  controller: TextEditingController(
+                    text: crudController.dateEditController.value.text.isEmpty
+                        ? ""
+                        : DateFormat('dd MMMM yyyy').format(
+                      DateTime.parse(crudController.dateEditController.value.text),
+                    ),
+                  ),
                   onTap: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     UpdateTaskDateAndTime().pickDate(context);
@@ -183,7 +190,13 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: crudController.timeEditController.value,
+                  controller: TextEditingController(
+                    text: crudController.timeEditController.value.text.isEmpty
+                        ? ""
+                        : DateFormat('h:mm a').format(
+                      DateTime.parse(crudController.timeEditController.value.text),
+                    ),
+                  ),
                   onTap: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     UpdateTaskDateAndTime().pickTime(context);

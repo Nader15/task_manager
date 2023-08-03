@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../../../../Utils/app_colors.dart';
 import '../../../../Logic/controllers/crud_controller.dart';
 
-class UpdateTaskDateAndTime{
+class UpdateTaskDateAndTime {
   DateTime selectedDate = DateTime.now();
   TimeOfDay initialTime = TimeOfDay.now();
 
@@ -25,7 +25,8 @@ class UpdateTaskDateAndTime{
     crudController.dateEditController.value.clear();
     crudController.timeEditController.value.clear();
     if (picked != null) {
-      crudController.dateEditController.value.text = DateFormat('dd MMMM yyyy').format(picked);
+      // crudController.dateController.value.text = DateFormat('dd MMMM yyyy').format(picked);
+      crudController.dateEditController.value.text = picked.toString();
       selectedDate = picked;
       // selectedDate = DateTime.now();
 
@@ -53,35 +54,25 @@ class UpdateTaskDateAndTime{
     crudController.timeEditController.value.clear();
     if (pickedTime != null) {
       final selectedDateTime = DateTime(
-        selectedDate.year,
-        selectedDate.month,
-        selectedDate.day,
+        DateTime
+            .parse(crudController.dateEditController.value.text)
+            .year,
+        DateTime
+            .parse(crudController.dateEditController.value.text)
+            .month,
+        DateTime
+            .parse(crudController.dateEditController.value.text)
+            .day,
         pickedTime.hour,
         pickedTime.minute,
       );
-      if (selectedDateTime.isBefore(DateTime.now())||
-          selectedDateTime.isBefore(DateTime.now())) {
-        // You can show an error message or perform any action here
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Invalid Time'),
-            content: Text('Please select a time in the future.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text('OK'),
-              ),
-            ],
-          ),
-        );
-      } else {
-        crudController.timeEditController.value.text = DateFormat('h:mm a').format(selectedDateTime);
-        initialTime = pickedTime;
-      }
+      crudController.timeEditController.value.text =
+          selectedDateTime.toString();
+      initialTime = pickedTime;
+      // }
     } else {
       initialTime = TimeOfDay.now();
     }
   }
-}
 
+}

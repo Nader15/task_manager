@@ -60,25 +60,7 @@ class AddTaskDateAndTime{
         pickedTime.hour,
         pickedTime.minute,
       );
-      // if (selectedDateTime.isBefore(DateTime.now())||
-      //     selectedDateTime.isBefore(DateTime.now())) {
-      //   // You can show an error message or perform any action here
-      //   showDialog(
-      //     context: context,
-      //     builder: (context) => AlertDialog(
-      //       title: Text('Invalid Time'),
-      //       content: Text('Please select a time in the future.'),
-      //       actions: [
-      //         TextButton(
-      //           onPressed: () => Navigator.of(context).pop(),
-      //           child: Text('OK'),
-      //         ),
-      //       ],
-      //     ),
-      //   );
-      // } else {
-        // crudController.timeController.value.text = DateFormat('h:mm a').format(selectedDateTime);
-        crudController.timeController.value.text = selectedDateTime.toString();
+      crudController.timeController.value.text = selectedDateTime.toString();
         initialTime = pickedTime;
       // }
     } else {
