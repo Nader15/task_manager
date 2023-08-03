@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
 import 'package:task_manager/Utils/app_images.dart';
 import '../../../Routes/routes.dart';
@@ -16,7 +18,16 @@ class SplashScreen extends StatefulWidget {
 class _SplashViewState extends State<SplashScreen> {
   late Timer timer;
 
-  void _goNext() => Get.offAllNamed(Routes.loginScreen);
+
+  void _goNext() {
+    log("From Splash Access Token --> ${GetStorage().read<String>('AccessToken')}");
+    if (GetStorage().read<String>('AccessToken') == null){
+      Get.offAllNamed(Routes.loginScreen);
+    }
+    else {
+      Get.offAllNamed(Routes.homeScreen);
+    }
+  }
 
   startDelay() {
     timer = Timer(const Duration(seconds: 5), _goNext);
@@ -24,6 +35,7 @@ class _SplashViewState extends State<SplashScreen> {
 
   @override
   void initState() {
+    GetStorage().read<String>('AccessToken');
     startDelay();
     super.initState();
   }

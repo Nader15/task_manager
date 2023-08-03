@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import '../Logic/binding/auth_binding.dart';
+import '../Logic/binding/crud_binding.dart';
 import '../View/Screens/CRUD_SCREENS/add_task_screen.dart';
 import '../View/Screens/CRUD_SCREENS/update_task_screen.dart';
 import '../View/Screens/Home_Screen/home_screen.dart';
@@ -24,17 +25,17 @@ class AppRoutes {
     GetPage(
       name: Routes.homeScreen,
       page: () => HomeScreen(),
-      binding: AuthBinding(),
+      binding: CrudBinding(),
     ),
     GetPage(
       name: Routes.addTaskScreen,
       page: () => AddTaskScreen(),
-      binding: AuthBinding(),
+      binding: CrudBinding(),
     ),
     GetPage(
       name: Routes.updateTaskScreen,
       page: () => UpdateTaskScreen(),
-      binding: AuthBinding(),
+      binding: CrudBinding(),
     ),
   ];
 }

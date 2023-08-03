@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager/Utils/app_colors.dart';
 
-Future<void> showSnackbar(
-  String title,
-  String message,
-  Color? backgroundColor,
+Future<void> showSnackbar({
+  required String title,
+  required String message,
+  Color? backgroundColor = AppColors.MAIN_COLOR,
   IconData? icon,
-) async {
+}) async {
   Get.snackbar(
     title,
     message,
