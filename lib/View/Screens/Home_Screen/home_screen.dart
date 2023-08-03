@@ -91,81 +91,40 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Today",
-                                style: TextStyle(
-                                    color: AppColors.BLACK_COLOR, fontSize: 20),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "${DateFormat('EEEE').format(DateTime.now())}",
-                                style: TextStyle(
-                                    color: AppColors.MAIN_COLOR, fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            "${DateFormat('dd MMMM yyyy').format(DateTime.now())}",
-                            style: TextStyle(
-                                color: AppColors.MAIN_COLOR, fontSize: 12),
-                          ),
-                        ],
+                      InkWell(
+                        onTap: (){
+                          crudController.fetchTasksByDate(DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.now())));
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Today",
+                                  style: TextStyle(
+                                      color: AppColors.BLACK_COLOR, fontSize: 20),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "${DateFormat('EEEE').format(DateTime.now())}",
+                                  style: TextStyle(
+                                      color: AppColors.MAIN_COLOR, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              "${DateFormat('dd MMMM yyyy').format(DateTime.now())}",
+                              style: TextStyle(
+                                  color: AppColors.MAIN_COLOR, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
 
-                      // SizedBox(
-                      //   height: AppConstants.mediaHeight(context) / 10,
-                      //   child: ListView.separated(
-                      //       itemCount: 20,
-                      //       scrollDirection: Axis.horizontal,
-                      //       itemBuilder: (context, index) {
-                      //         return Container(
-                      //             width: 50,
-                      //             padding: EdgeInsets.all(2),
-                      //             decoration: BoxDecoration(
-                      //                 color: index == 2
-                      //                     ? AppColors.MAIN_COLOR
-                      //                     : AppColors.WHITE_COLOR,
-                      //                 border: Border.all(
-                      //                     color: AppColors.MAIN_COLOR),
-                      //                 borderRadius: BorderRadius.circular(5)),
-                      //             child: Column(
-                      //               mainAxisAlignment: MainAxisAlignment.center,
-                      //               children: [
-                      //                 Text(
-                      //                   index < 9
-                      //                       ? "0${index + 1}"
-                      //                       : "${index + 1}",
-                      //                   style: TextStyle(
-                      //                       color: index == 2
-                      //                           ? AppColors.WHITE_COLOR
-                      //                           : AppColors.MAIN_COLOR,
-                      //                       fontSize: 20),
-                      //                 ),
-                      //                 SizedBox(
-                      //                   height: 5,
-                      //                 ),
-                      //                 Text(
-                      //                   "M",
-                      //                   style: TextStyle(
-                      //                       color: index == 2
-                      //                           ? AppColors.WHITE_COLOR
-                      //                           : AppColors.MAIN_COLOR),
-                      //                 ),
-                      //               ],
-                      //             ));
-                      //       },
-                      //       separatorBuilder: (context, index) => SizedBox(
-                      //             width: 20,
-                      //           )),
-                      // )
                       DatePicker(),
                     ],
                   ),

@@ -24,8 +24,6 @@ class DatePicker extends StatelessWidget {
         // lastDate: DateTime.now(),
         initialDate: DateTime.now(),
         dateFormat: "dd/MMMM/yyyy",
-          // 2023-08-03 00:00:00.000
-          // 2023-08-04 00:00:00.000
         onChange: (DateTime selectedDate, _) {
           log("into filter date -->${selectedDate}");
             crudController.fetchTasksByDate(selectedDate);

@@ -54,6 +54,8 @@ class CrudController extends GetxController {
     // Do something with the retrieved tasks
   }
 
+
+
   Future<void> fetchTasksByDate(DateTime selectedDate) async {
     isTasksLoading(true);
     tasks.value = await TaskDatabaseHelper().getTasksByDate(selectedDate);

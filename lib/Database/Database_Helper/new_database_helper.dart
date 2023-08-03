@@ -72,8 +72,6 @@ class TaskDatabaseHelper {
       where: 'date = ?',
       whereArgs: [selectedDate.toString()],
     );
-    log("selectedDate database filter --> $selectedDate");
-    log("tasks database filter --> $tasks");
     return tasks.map((taskMap) => TaskModel.fromJson(taskMap, color: Color(taskMap['color'] as int))).toList();
   }
 
