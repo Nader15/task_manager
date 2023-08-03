@@ -49,13 +49,35 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: IconButton(
                           onPressed: () {
-                            GetStorage().remove("AccessToken");
-                            Get.offAllNamed(Routes.loginScreen);
-                            showSnackbar(
-                                title: AppStrings.LOG_OUT,
-                                message: AppStrings.LOGGED_OUT,
-                                backgroundColor: AppColors.MAIN_COLOR,
-                                icon: Icons.verified_user_rounded);
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Logout",style: TextStyle(color: AppColors.RED_COLOR),),
+                                  content: Text("Are you sure you want to Logout?"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Cancel"),
+                                    ),
+                                    TextButton(
+                                      onPressed:(){
+                                        GetStorage().remove("AccessToken");
+                                        Get.offAllNamed(Routes.loginScreen);
+                                        showSnackbar(
+                                            title: AppStrings.LOG_OUT,
+                                            message: AppStrings.LOGGED_OUT,
+                                            backgroundColor: AppColors.MAIN_COLOR,
+                                            icon: Icons.verified_user_rounded);
+                                      },
+                                      child: Text("Logout",style: TextStyle(color: AppColors.RED_COLOR),),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                           icon: Icon(
                             Icons.logout,
@@ -67,11 +89,21 @@ class HomeScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "TODO",
-                            style: TextStyle(
-                                color: AppColors.MAIN_COLOR, fontSize: 30),
-                          ),
+                         InkWell(
+                           onTap: (){
+                             crudController.loadTasks();
+                           },
+                           child: Row(
+                             children: [
+                               Text(
+                                 "TODO",
+                                 style: TextStyle(
+                                     color: AppColors.MAIN_COLOR, fontSize: 30),
+                               ),
+                               Icon(Icons.refresh)
+                             ],
+                           ),
+                         ),
                           IconButton(
                             // splashRadius: 25,
                             onPressed: () {
@@ -94,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                       InkWell(
                         onTap: (){
                           crudController.fetchTasksByDate(DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.now())));
-                        },
+                          },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
